@@ -1,0 +1,9 @@
+{
+  "name": "NextJS TypeScript Template",
+  "short_name": "NextJS TS Tpl",
+  "background_color": "#FFFFFF",
+  "description": "A NextJS template using Typescript.",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#FFFFFF"
+}
