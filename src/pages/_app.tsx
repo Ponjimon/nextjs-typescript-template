@@ -5,7 +5,6 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import reset from 'styled-reset';
 
 const Meta: FC = () => {
-  const tagline = 'Twitch streamers using the Shure SM7B';
   return (
     <Head>
       <title>NextJS TypeScript Template</title>
