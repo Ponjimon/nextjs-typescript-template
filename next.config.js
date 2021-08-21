@@ -1,6 +1,4 @@
 const nextOffline = require('next-offline');
-const nextSourceMaps = require('@zeit/next-source-maps')();
-const withPlugins = require('next-compose-plugins');
 
 const config = {
   webpack: (config, { dev, isServer }) => {
@@ -14,8 +12,6 @@ const config = {
   },
 };
 
-const sourceMapsConfig = [nextSourceMaps];
-
 const offlineConfig = [
   nextOffline,
   {
@@ -26,4 +22,38 @@ const offlineConfig = [
   },
 ];
 
-module.exports = withPlugins([sourceMapsConfig, offlineConfig], config);
+const compose = plugins => ({
+  webpack(config, options) {
+    return plugins.reduce((config, plugin) => {
+      if (plugin instanceof Array) {
+        const [_plugin, ...args] = plugin;
+        plugin = _plugin(...args);
+      }
+      if (plugin instanceof Function) {
+        plugin = plugin();
+      }
+      if (plugin && plugin.webpack instanceof Function) {
+        return plugin.webpack(config, options);
+      }
+      return config;
+    }, config);
+  },
+
+  webpackDevMiddleware(config) {
+    return plugins.reduce((config, plugin) => {
+      if (plugin instanceof Array) {
+        const [_plugin, ...args] = plugin;
+        plugin = _plugin(...args);
+      }
+      if (plugin instanceof Function) {
+        plugin = plugin();
+      }
+      if (plugin && plugin.webpackDevMiddleware instanceof Function) {
+        return plugin.webpackDevMiddleware(config);
+      }
+      return config;
+    }, config);
+  },
+});
+
+module.exports = compose([config, offlineConfig]);
