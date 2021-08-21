@@ -41,7 +41,7 @@ export default class AppDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.json" />
           <link
-            href="https://fonts.googleapis.com/css?family=Roboto:400"
+            href="https://fonts.googleapis.com/css?family=Roboto:400&display=optional"
             rel="stylesheet"
           />
         </Head>

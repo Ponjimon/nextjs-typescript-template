@@ -5,7 +5,6 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import reset from 'styled-reset';
 
 const Meta: FC = () => {
-  const tagline = 'Twitch streamers using the Shure SM7B';
   return (
     <Head>
       <title>NextJS TypeScript Template</title>
@@ -17,13 +16,8 @@ const Meta: FC = () => {
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
-  html {
-    font-size: 62.5%;
-    text-size-adjust: 100%;
-  }
   body {
     font-family: Roboto;
-    font-size: 1.3rem;
     overflow-x: hidden;
   }
 `;
