@@ -1,6 +1,7 @@
 const nextOffline = require('next-offline');
 
 const config = {
+  swcMinify: true,
   webpack: (config, { dev, isServer }) => {
     if (!dev) {
       config.devtool = 'source-map';
